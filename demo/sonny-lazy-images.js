@@ -114,7 +114,7 @@
    * @param  {Object} options   The custom options defined by the user
    *
    */
-  function init(options) {
+  function _init(options) {
     private.options = _optionsInit(options);
 
     _debugInfo('I am so lazy');
@@ -129,6 +129,17 @@
     _lazyLoadImages();
   };
 
+  /**
+   * Start lazyLoading after 1 second or a custom time
+   */
+  function init(options) {
+    var wait = option.wait || 1000;
+
+    setTimeout(function() {
+      _init(options);
+    }, option.wait);
+  }
+
   lazySonny.init = init;
   lazySonny.version = version;
 
@@ -141,8 +152,9 @@
    * @type {Object}
    */
   var defaults = {
+    debug: false,
     offset: 100,
-    debug: false
+    wait: 1000
   };
 
   return defaults;
