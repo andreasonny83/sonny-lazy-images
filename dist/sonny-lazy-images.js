@@ -1,6 +1,6 @@
 /**
  * Sonny LazyImages
- * @version 0.0.1
+ * @version 0.0.2
  *
  * Copyright (c) 2016 by andreasonny83. All Rights Reserved.
  * This code may only be used under the MIT style license found at https://andreasonny.mit-license.org/@2016/
@@ -89,7 +89,7 @@
 
     targets = global.document.querySelectorAll('img.sonny-lazy-images[data-src]');
 
-    targets.forEach(function(el) {
+    [].forEach.call(targets, function(el) {
       if(_isElementInViewport(el, private.options.offset)) {
         var image = el.getAttribute('data-src');
 
@@ -133,11 +133,11 @@
    * Start lazyLoading after 1 second or a custom time
    */
   function init(options) {
-    var wait = option.wait || 1000;
+    var wait = options.wait || 1000;
 
     setTimeout(function() {
       _init(options);
-    }, option.wait);
+    }, options.wait);
   }
 
   lazySonny.init = init;
